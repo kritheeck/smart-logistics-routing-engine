@@ -1,21 +1,27 @@
-"""FastAPI application entry point."""
-
 import os
-import uvicorn
+from fastapi import FastAPI
 from dotenv import load_dotenv
 
-# Load environment variables
+# load environment variables
 load_dotenv()
 
+# CREATE FASTAPI APP (THIS WAS MISSING)
+app = FastAPI(
+    title="Smart Logistics Routing API",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc"
+)
+
+# IMPORT ROUTES
+from routes import router
+app.include_router(router, prefix="/api")
+
+# START SERVER
 if __name__ == "__main__":
-    host = os.getenv("HOST", "0.0.0.0")
-    port = int(os.getenv("PORT", 8000))
-    reload = os.getenv("RELOAD", "True").lower() == "true"
-    
+    import uvicorn
     uvicorn.run(
-        "app.main:app",
-        host=host,
-        port=port,
-        reload=reload,
-        log_level="info"
+        "run:app",
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 8000)),
+        reload=False
     )
