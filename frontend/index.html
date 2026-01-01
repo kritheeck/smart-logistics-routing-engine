@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Logistics Routing - Free Delivery Route Optimizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>🚚 Smart Logistics Routing</h1>
+                <p class="tagline">India's FREE Delivery Route Optimizer | Zero API Keys | 100% Open Source</p>
+            </div>
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span id="serverStatus">Connecting...</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="glass-card input-section">
+                <h2>🗓️ Plan Your Delivery Route</h2>
+                
+                <div class="form-group">
+                    <label for="startLocation">Start Location (Pickup Point)</label>
+                    <input type="text" id="startLocation" placeholder="e.g., Warehouse" list="locations-list" autocomplete="off">
+                    <small>Available: Warehouse, HubA, HubB, TransitX, TransitY, TransitZ, CustomerA-F, DistrictP</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="endLocation">Destination (Delivery Point)</label>
+                    <input type="text" id="endLocation" placeholder="e.g., CustomerE" list="locations-list" autocomplete="off">
+                </div>
+
+                <datalist id="locations-list">
+                    <option value="Warehouse">
+                    <option value="HubA">
+                    <option value="HubB">
+                    <option value="TransitX">
+                    <option value="TransitY">
+                    <option value="TransitZ">
+                    <option value="CustomerA">
+                    <option value="CustomerB">
+                    <option value="CustomerC">
+                    <option value="CustomerD">
+                    <option value="CustomerE">
+                    <option value="CustomerF">
+                    <option value="DistrictP">
+                </datalist>
+
+                <button id="calculateBtn" class="btn-primary">🎆 Calculate Best Route</button>
+            </div>
+
+            <div id="resultSection" class="glass-card result-section" style="display: none;">
+                <h2>✅ Route Optimized Successfully!</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">🚚</div>
+                        <div class="metric-value" id="totalDistance">-</div>
+                        <div class="metric-label">Total Distance (km)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📍</div>
+                        <div class="metric-value" id="totalStops">-</div>
+                        <div class="metric-label">Total Stops</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🔍</div>
+                        <div class="metric-value" id="nodesExplored">-</div>
+                        <div class="metric-label">Nodes Explored</div>
+                    </div>
+                </div>
+
+                <div class="path-visualization">
+                    <h3>🗺️ Route Path Visualization</h3>
+                    <div id="pathList" class="path-list"></div>
+                </div>
+
+                <button class="btn-secondary" onclick="resetForm()">🔄 Calculate New Route</button>
+            </div>
+
+            <div id="errorSection" class="error-card" style="display: none;">
+                <h3>⚠️ Error</h3>
+                <p id="errorMessage"></p>
+                <button onclick="hideError()" class="btn-secondary">✅ Dismiss</button>
+            </div>
+
+            <div id="loadingSection" class="loading-card" style="display: none;">
+                <div class="spinner"></div>
+                <p id="loadingText">Calculating optimal route using Dijkstra's algorithm...</p>
+            </div>
+
+            <div class="glass-card network-info">
+                <h2>📈 Network Information</h2>
+                <div id="graphInfo">
+                    <p>Loading network data...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>🇮🇳 <strong>Smart Logistics Routing Engine v1.0.0</strong></p>
+            <p>Built for India's Small Businesses | Zero Cost | Zero API Keys | 100% Open Source</p>
+            <p><a href="https://github.com/kritheeck/smart-logistics-routing-engine" target="_blank">GitHub Repository</a> | MIT License</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
