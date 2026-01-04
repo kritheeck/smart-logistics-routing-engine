@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
-from api.routes import router
-from middleware.error_handler import setup_error_handlers
+from .api.routes import router
+from .middleware.error_handler import setup_error_handlers
 
 load_dotenv()
 
